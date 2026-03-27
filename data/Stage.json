@@ -8,21 +8,21 @@
     { "libellé": "Animateur",          "prixParPlage": 0,  "prixSouper": 10, "prixLogement": 20, "forfaitTout": 25 }
   ],
   "plages": [
-    { "numero": 1, "jour": "Samedi",   "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Marc Dupuis" },
-    { "numero": 2, "jour": "Samedi",   "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Marc Dupuis" },
-    { "numero": 3, "jour": "Samedi",   "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Julie Bernard" },
-    { "numero": 4, "jour": "Samedi",   "heureDebut": "16:00", "heureFin": "17:30", "animateur": "Julie Bernard" },
-    { "numero": 5, "jour": "Samedi",   "heureDebut": "18:00", "heureFin": "19:30", "animateur": "Marc Dupuis" },
-    { "numero": 6, "jour": "Dimanche", "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Julie Bernard" },
-    { "numero": 7, "jour": "Dimanche", "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Marc Dupuis" },
-    { "numero": 8, "jour": "Dimanche", "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Julie Bernard" }
+    { "numero": 1, "jour": "Samedi",   "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Ramzan Arbiev" },
+    { "numero": 2, "jour": "Samedi",   "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Ramzan Arbiev" },
+    { "numero": 3, "jour": "Samedi",   "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Marie Tomor" },
+    { "numero": 4, "jour": "Samedi",   "heureDebut": "16:00", "heureFin": "17:30", "animateur": "Marie Tomor" },
+    { "numero": 5, "jour": "Samedi",   "heureDebut": "18:00", "heureFin": "19:30", "animateur": "Ramzan Arbiev" },
+    { "numero": 6, "jour": "Dimanche", "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Marie Tomor" },
+    { "numero": 7, "jour": "Dimanche", "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Ramzan Arbiev" },
+    { "numero": 8, "jour": "Dimanche", "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Marie Tomor" }
   ],
   "participants": [
     {
-      "nom": "Dupont",
-      "prénom": "Jean",
+      "nom": "Henrottay",
+      "prénom": "Aumaury",
       "téléphone": "0477123456",
-      "email": "jean@gmail.com",
+      "email": "henrottay@gmail.com",
       "club": "Liège",
       "type": "Plein tarif",
       "plages": [1, 2, 3],
@@ -30,10 +30,10 @@
       "avecLogement": false
     },
     {
-      "nom": "Martin",
-      "prénom": "Sophie",
+      "nom": "Banneux",
+      "prénom": "Florent",
       "téléphone": "0488654321",
-      "email": "sophie@gmail.com",
+      "email": "florent@gmail.com",
       "club": "Namur",
       "type": "Moins de 25 ans",
       "plages": [1, 2],
