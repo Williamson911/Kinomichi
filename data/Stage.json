@@ -1,0 +1,44 @@
+{
+  "nom": "Stage Kinomichi Printemps 2026",
+  "types": [
+    { "libellé": "Plein tarif",        "prixParPlage": 15, "prixSouper": 20, "prixLogement": 30, "forfaitTout": 55 },
+    { "libellé": "Moins de 25 ans",    "prixParPlage": 10, "prixSouper": 15, "prixLogement": 25, "forfaitTout": 40 },
+    { "libellé": "Demandeur d emploi", "prixParPlage": 8,  "prixSouper": 15, "prixLogement": 25, "forfaitTout": 38 },
+    { "libellé": "Senior",             "prixParPlage": 12, "prixSouper": 20, "prixLogement": 30, "forfaitTout": 50 },
+    { "libellé": "Animateur",          "prixParPlage": 0,  "prixSouper": 10, "prixLogement": 20, "forfaitTout": 25 }
+  ],
+  "plages": [
+    { "numero": 1, "jour": "Samedi",   "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Marc Dupuis" },
+    { "numero": 2, "jour": "Samedi",   "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Marc Dupuis" },
+    { "numero": 3, "jour": "Samedi",   "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Julie Bernard" },
+    { "numero": 4, "jour": "Samedi",   "heureDebut": "16:00", "heureFin": "17:30", "animateur": "Julie Bernard" },
+    { "numero": 5, "jour": "Samedi",   "heureDebut": "18:00", "heureFin": "19:30", "animateur": "Marc Dupuis" },
+    { "numero": 6, "jour": "Dimanche", "heureDebut": "09:00", "heureFin": "10:30", "animateur": "Julie Bernard" },
+    { "numero": 7, "jour": "Dimanche", "heureDebut": "11:00", "heureFin": "12:30", "animateur": "Marc Dupuis" },
+    { "numero": 8, "jour": "Dimanche", "heureDebut": "14:00", "heureFin": "15:30", "animateur": "Julie Bernard" }
+  ],
+  "participants": [
+    {
+      "nom": "Dupont",
+      "prénom": "Jean",
+      "téléphone": "0477123456",
+      "email": "jean@gmail.com",
+      "club": "Liège",
+      "type": "Plein tarif",
+      "plages": [1, 2, 3],
+      "avecSouper": true,
+      "avecLogement": false
+    },
+    {
+      "nom": "Martin",
+      "prénom": "Sophie",
+      "téléphone": "0488654321",
+      "email": "sophie@gmail.com",
+      "club": "Namur",
+      "type": "Moins de 25 ans",
+      "plages": [1, 2],
+      "avecSouper": true,
+      "avecLogement": true
+    }
+  ]
+}
