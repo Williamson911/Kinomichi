@@ -3,7 +3,6 @@ package be.technifutur.kinomichi;
 import be.technifutur.kinomichi.data.StageData;
 import com.google.gson.Gson;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -98,6 +97,16 @@ public class Main {
             System.out.println("Forfait tout compris :");
             double forfait = Double.parseDouble(scanner.nextLine());
 
+
+            boolean existe = types.stream()
+                    .anyMatch(t -> t.getLibellé().equalsIgnoreCase(libellé));
+            if (existe) {
+                System.out.println("⚠ Ce type existe déjà, ignoré.");
+            } else {
+                // ... reste de la saisie des prix
+                types.add(new TypeParticipant(libellé, prixPlage, prixSouper, prixLogement, forfait));
+            }
+
             types.add(new TypeParticipant(libellé, prixPlage, prixSouper, prixLogement, forfait));
 
             System.out.println("Ajouter un autre type ? (o/n)");
@@ -147,15 +156,22 @@ public class Main {
             System.out.println("Club :");
             String club = scanner.nextLine();
 
-            // Type (optionnel)
             System.out.println("Type de participant ? (o/n)");
             String avecType = scanner.nextLine();
             String type = null;
             if (avecType.equalsIgnoreCase("o")) {
                 System.out.println("Types disponibles :");
-                data.getTypes().forEach(t -> System.out.println("  - " + t.getLibellé()));
-                System.out.println("Choisir un type :");
-                type = scanner.nextLine();
+                List<TypeParticipant> types = data.getTypes();
+                for (int i = 0; i < types.size(); i++) {
+                    System.out.println("  " + (i + 1) + " - " + types.get(i).getLibellé());
+                }
+                System.out.println("Choisir un numéro :");
+                int choixType = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choixType >= 0 && choixType < types.size()) {
+                    type = types.get(choixType).getLibellé();
+                } else {
+                    System.out.println("⚠ Choix invalide, type non renseigné.");
+                }
             }
 
             System.out.println("Numéros de plages (séparés par des virgules, ou vide) :");
@@ -167,7 +183,6 @@ public class Main {
                 }
             }
 
-            // Souper uniquement possible sans plage
             System.out.println("Avec souper ? (o/n)");
             boolean avecSouper = scanner.nextLine().equalsIgnoreCase("o");
 
@@ -185,7 +200,61 @@ public class Main {
 
 
     static void afficherRecapitulatif(StageData data) {
+        System.out.println("\n╔══════════════════════════════════════╗");
+        System.out.println("║  Stage : " + data.getNom());
+        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("Nombre d'inscrits : " + data.getParticipants().size());
+        System.out.println("──────────────────────────────────────");
 
+        double totalGeneral = 0;
+
+        for (Participants p : data.getParticipants()) {
+            TypeParticipant typeP = data.getTypes().stream()
+                    .filter(t -> t.getLibellé().equals(p.getType()))
+                    .findFirst()
+                    .orElse(null);
+
+            System.out.println("\n👤 " + p.getPrénom() + " " + p.getNom());
+            System.out.println("   Club      : " + p.getClub());
+            System.out.println("   Email     : " + p.getEmail());
+            System.out.println("   Téléphone : " + p.getTéléphone());
+            System.out.println("   Type      : " + (p.getType() != null ? p.getType() : "Non renseigné"));
+            System.out.println("   Plages    : " + (p.getPlages().isEmpty() ? "Aucune" : p.getPlages()));
+            System.out.println("   Souper    : " + (p.isAvecSouper()   ? "oui" : "non"));
+            System.out.println("   Logement  : " + (p.isAvecLogement() ? "oui" : "non"));
+
+            if (typeP != null) {
+                double total = typeP.calculerTotal(
+                        p.getPlages().size(),
+                        p.isAvecSouper(),
+                        p.isAvecLogement()
+                );
+                System.out.println("   Total dû  : " + total + " €");
+                totalGeneral += total;
+            } else {
+                System.out.println("   Total dû  : non calculable (type non renseigné)");
+            }
+
+            System.out.println("──────────────────────────────────────");
+        }
+
+        System.out.println("\n💰 Total général : " + totalGeneral + " €");
+
+        System.out.println("\n╔══════════════════════════════════════╗");
+        System.out.println("║  Récapitulatif par plage              ║");
+        System.out.println("╚══════════════════════════════════════╝");
+
+        for (PlageHoraire plage : data.getPlages()) {
+            long nbInscrits = data.getParticipants().stream()
+                    .filter(p -> p.getPlages().contains(plage.getNumero()))
+                    .count();
+
+            System.out.println("\n📅 Plage " + plage.getNumero() + " — " + plage.getJour());
+            System.out.println("   Horaire   : " + plage.getHeureDebut() + " → " + plage.getHeureFin());
+            System.out.println("   Animateur : " + plage.getAnimateur());
+            System.out.println("   Inscrits  : " + nbInscrits);
+            System.out.println("──────────────────────────────────────");
+        }
     }
 
     static void afficherBanner() {
