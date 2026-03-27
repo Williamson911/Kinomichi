@@ -31,7 +31,6 @@ public class Participants {
         this.avecLogement = avecLogement;
     }
 
-    // Getters
     public String getNom()             { return nom; }
     public String getPrénom()          { return prénom; }
     public String getTéléphone()       { return téléphone; }

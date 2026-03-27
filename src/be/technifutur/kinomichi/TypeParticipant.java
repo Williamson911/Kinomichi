@@ -42,7 +42,7 @@ public class TypeParticipant {
                 + (avecSouper   ? prixSouper   : 0)
                 + (avecLogement ? prixLogement : 0);
 
-        // Le forfait ne s'applique que si le participant a au moins une plage
+
         if (nbPlages == 0) return sansForfait;
 
         return Math.min(sansForfait, forfaitTout);
