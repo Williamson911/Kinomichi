@@ -1,0 +1,63 @@
+{
+  "nom": "Konimichi",
+  "types": [
+    {
+      "libellé": "Plein",
+      "prixParPlage": 15.0,
+      "prixSouper": 20.0,
+      "prixLogement": 50.0,
+      "forfaitTout": 70.0
+    },
+    {
+      "libellé": "réduit",
+      "prixParPlage": 10.0,
+      "prixSouper": 15.0,
+      "prixLogement": 45.0,
+      "forfaitTout": 60.0
+    }
+  ],
+  "plages": [
+    {
+      "numero": 1,
+      "jour": "Samedi",
+      "heureDebut": "10.00",
+      "heureFin": "11.00",
+      "animateur": "Ramnzan"
+    },
+    {
+      "numero": 2,
+      "jour": "Samedi",
+      "heureDebut": "09.00",
+      "heureFin": "10.00",
+      "animateur": "Ramzan"
+    }
+  ],
+  "participants": [
+    {
+      "nom": "JAjajze",
+      "prénom": "Jjaep",
+      "téléphone": "02105414165",
+      "email": "oajeoa@erpz.com",
+      "club": "Java",
+      "type": "Plein",
+      "plages": [
+        2
+      ],
+      "avecSouper": true,
+      "avecLogement": true
+    },
+    {
+      "nom": "Joajzja",
+      "prénom": "JKPkiea",
+      "téléphone": "0154555555",
+      "email": "podoz@ltlg.com",
+      "club": "Java",
+      "type": "réduit",
+      "plages": [
+        1
+      ],
+      "avecSouper": true,
+      "avecLogement": false
+    }
+  ]
+}
