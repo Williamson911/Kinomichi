@@ -3,54 +3,73 @@
   "types": [
     {
       "libellé": "Plein",
-      "prixParPlage": 15.0,
-      "prixSouper": 20.0,
+      "prixParPlage": 20.0,
+      "prixSouper": 25.0,
       "prixLogement": 50.0,
-      "forfaitTout": 70.0
+      "forfaitTout": 85.0
     },
     {
       "libellé": "réduit",
-      "prixParPlage": 10.0,
-      "prixSouper": 15.0,
+      "prixParPlage": 15.0,
+      "prixSouper": 20.0,
       "prixLogement": 45.0,
-      "forfaitTout": 60.0
+      "forfaitTout": 70.0
+    },
+    {
+      "libellé": "Animateur",
+      "prixParPlage": 0.0,
+      "prixSouper": 0.0,
+      "prixLogement": 0.0,
+      "forfaitTout": 0.0
     }
   ],
   "plages": [
     {
       "numero": 1,
       "jour": "Samedi",
-      "heureDebut": "10.00",
-      "heureFin": "11.00",
-      "animateur": "Ramnzan"
+      "heureDebut": "09.00",
+      "heureFin": "10.00",
+      "animateur": "Ramzan"
     },
     {
       "numero": 2,
-      "jour": "Samedi",
-      "heureDebut": "09.00",
-      "heureFin": "10.00",
+      "jour": "10.30",
+      "heureDebut": "10.30",
+      "heureFin": "11.30",
       "animateur": "Ramzan"
     }
   ],
   "participants": [
     {
-      "nom": "JAjajze",
-      "prénom": "Jjaep",
-      "téléphone": "02105414165",
-      "email": "oajeoa@erpz.com",
+      "nom": "AJaja",
+      "prénom": "Kker",
+      "téléphone": "022455554",
+      "email": "akzka@gmze.com",
       "club": "Java",
       "type": "Plein",
       "plages": [
-        2
+        1
       ],
       "avecSouper": true,
       "avecLogement": true
     },
     {
-      "nom": "Joajzja",
-      "prénom": "JKPkiea",
-      "téléphone": "0154555555",
-      "email": "podoz@ltlg.com",
+      "nom": "JAjepa",
+      "prénom": "pzke",
+      "téléphone": "4458767",
+      "email": "lzlel@lelme.com",
+      "club": "Java",
+      "plages": [
+        2
+      ],
+      "avecSouper": true,
+      "avecLogement": false
+    },
+    {
+      "nom": "Kjaozjao",
+      "prénom": "ppllz",
+      "téléphone": "454558555",
+      "email": "Laloza@lzle.com",
       "club": "Java",
       "type": "réduit",
       "plages": [

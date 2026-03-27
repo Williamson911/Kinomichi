@@ -24,7 +24,7 @@ public class AffichageService {
             System.out.println("   Email     : " + p.getEmail());
             System.out.println("   Téléphone : " + p.getTéléphone());
             System.out.println("   Type      : " + (p.getType() != null ? p.getType() : "Non renseigné"));
-            System.out.println("   Plages    : " + (p.getPlages().isEmpty() ? "Aucune" : p.getPlages()));
+            System.out.println("   Plages    : " + (p.getPlages().isEmpty() ? "Souper uniquement" : p.getPlages()));
             System.out.println("   Souper    : " + (p.isAvecSouper()   ? "oui" : "non"));
             System.out.println("   Logement  : " + (p.isAvecLogement() ? "oui" : "non"));
 
