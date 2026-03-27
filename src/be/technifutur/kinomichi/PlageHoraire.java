@@ -8,9 +8,22 @@ public class PlageHoraire {
     private String animateur;
 
 
-    public int getNumero()          { return numero; }
-    public String getJour()         { return jour; }
-    public String getHeureDebut()   { return heureDebut; }
-    public String getHeureFin()     { return heureFin; }
-    public String getAnimateur()    { return animateur; }
+    public PlageHoraire() {}
+
+
+    public PlageHoraire(int numero, String jour, String heureDebut,
+                        String heureFin, String animateur) {
+        this.numero = numero;
+        this.jour = jour;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.animateur = animateur;
+    }
+
+
+    public int getNumero()        { return numero; }
+    public String getJour()       { return jour; }
+    public String getHeureDebut() { return heureDebut; }
+    public String getHeureFin()   { return heureFin; }
+    public String getAnimateur()  { return animateur; }
 }
