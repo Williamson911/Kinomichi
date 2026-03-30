@@ -2,6 +2,8 @@ package be.technifutur.kinomichi;
 
 import be.technifutur.kinomichi.data.StageData;
 
+import java.util.List;
+
 public class AffichageService {
 
     public void afficherRecapitulatif(StageData data) {
@@ -53,14 +55,25 @@ public class AffichageService {
         System.out.println("╚══════════════════════════════════════╝");
 
         for (PlageHoraire plage : data.getPlages()) {
-            long nbInscrits = data.getParticipants().stream()
+            List<Participants> inscrits = data.getParticipants().stream()
                     .filter(p -> p.getPlages().contains(plage.getNumero()))
-                    .count();
+                    .collect(java.util.stream.Collectors.toList());
 
             System.out.println("\n📅 Plage " + plage.getNumero() + " — " + plage.getJour());
             System.out.println("   Horaire   : " + plage.getHeureDebut() + " → " + plage.getHeureFin());
             System.out.println("   Animateur : " + plage.getAnimateur());
-            System.out.println("   Inscrits  : " + nbInscrits);
+            System.out.println("   Inscrits  : " + inscrits.size());
+
+            if (inscrits.isEmpty()) {
+                System.out.println("   Participants : aucun");
+            } else {
+                System.out.println("   Participants :");
+                for (Participants p : inscrits) {
+                    System.out.println("      - " + p.getPrénom() + " " + p.getNom()
+                            + " (" + (p.getType() != null ? p.getType() : "type non renseigné") + ")");
+                }
+            }
+
             System.out.println("──────────────────────────────────────");
         }
     }
