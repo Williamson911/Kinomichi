@@ -16,9 +16,11 @@ public class StageLoader {
     private static final String DATA_DIR = "data";
 
     public StageData charger(Scanner scanner) {
+
         System.out.println("Nom du fichier JSON (dans le dossier data/) :");
         String nomFichier = scanner.nextLine();
         Path chemin = Paths.get(DATA_DIR, nomFichier);
+
 
         if (!Files.exists(chemin)) {
             System.out.println("⚠ Fichier introuvable : " + chemin.toAbsolutePath());
@@ -28,6 +30,7 @@ public class StageLoader {
         try (java.io.FileReader reader = new java.io.FileReader(chemin.toFile())) {
             StageData data = new Gson().fromJson(reader, StageData.class);
             System.out.println("✅ Fichier chargé : " + chemin.toAbsolutePath());
+
 
             if (!valider(data)) {
                 System.out.println("\n⚠ Le fichier contient des erreurs, vérifiez les données.");
@@ -147,4 +150,5 @@ public class StageLoader {
 
         return valide;
     }
+
 }

@@ -27,15 +27,15 @@
     {
       "numero": 1,
       "jour": "Samedi",
-      "heureDebut": "09.00",
-      "heureFin": "10.00",
+      "heureDebut": "09:00",
+      "heureFin": "10:00",
       "animateur": "Ramzan"
     },
     {
       "numero": 2,
-      "jour": "10.30",
-      "heureDebut": "10.30",
-      "heureFin": "11.30",
+      "jour": "Samedi",
+      "heureDebut": "10:30",
+      "heureFin": "11:30",
       "animateur": "Ramzan"
     }
   ],
@@ -59,6 +59,7 @@
       "téléphone": "4458767",
       "email": "lzlel@lelme.com",
       "club": "Java",
+      "type": "réduit",
       "plages": [
         2
       ],

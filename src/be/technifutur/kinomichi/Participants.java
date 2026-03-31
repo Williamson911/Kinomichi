@@ -40,4 +40,5 @@ public class Participants {
     public List<Integer> getPlages()   { return plages; }
     public boolean isAvecSouper()      { return avecSouper; }
     public boolean isAvecLogement()    { return avecLogement; }
+    public void setType(String type) { this.type = type; }
 }
