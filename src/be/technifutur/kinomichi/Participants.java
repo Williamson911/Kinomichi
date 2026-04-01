@@ -40,5 +40,13 @@ public class Participants {
     public List<Integer> getPlages()   { return plages; }
     public boolean isAvecSouper()      { return avecSouper; }
     public boolean isAvecLogement()    { return avecLogement; }
-    public void setType(String type) { this.type = type; }
+    public void setNom(String nom)                  { this.nom = nom; }
+    public void setPrénom(String prénom)            { this.prénom = prénom; }
+    public void setTéléphone(String téléphone)      { this.téléphone = téléphone; }
+    public void setEmail(String email)              { this.email = email; }
+    public void setClub(String club)               { this.club = club; }
+    public void setType(String type)               { this.type = type; }
+    public void setPlages(List<Integer> plages)    { this.plages = plages; }
+    public void setAvecSouper(boolean avecSouper)  { this.avecSouper = avecSouper; }
+    public void setAvecLogement(boolean avecLogement) { this.avecLogement = avecLogement; }
 }

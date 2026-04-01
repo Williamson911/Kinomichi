@@ -561,4 +561,82 @@ public class SaisieService {
         System.out.println("✅ Animateur de la plage " + plage.getNumero()
                 + " mis à jour : " + nouvelAnimateur);
     }
+    public void supprimerParticipant(StageData data) {
+        if (data.getParticipants() == null || data.getParticipants().isEmpty()) {
+            System.out.println("⚠ Aucun participant enregistré.");
+            return;
+        }
+
+        System.out.println("Participants :");
+        List<Participants> participants = data.getParticipants();
+        for (int i = 0; i < participants.size(); i++) {
+            System.out.println("  " + (i + 1) + " - "
+                    + participants.get(i).getPrénom() + " "
+                    + participants.get(i).getNom());
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= participants.size()) {
+            System.out.println("Choisir un numéro de participant à supprimer :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= participants.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+                choix = -1;
+            }
+        }
+
+        Participants p = participants.get(choix);
+        System.out.println("Confirmer la suppression de "
+                + p.getPrénom() + " " + p.getNom() + " ? (o/n)");
+
+        if (scanner.nextLine().equalsIgnoreCase("o")) {
+            participants.remove(choix);
+            System.out.println("✅ Participant supprimé. N'oubliez pas de sauvegarder (option 3).");
+        } else {
+            System.out.println("Suppression annulée.");
+        }
+    }
+    public void modifierParticipant(StageData data) {
+        if (data.getParticipants() == null || data.getParticipants().isEmpty()) {
+            System.out.println("⚠ Aucun participant enregistré.");
+            return;
+        }
+
+        System.out.println("Participants :");
+        List<Participants> participants = data.getParticipants();
+        for (int i = 0; i < participants.size(); i++) {
+            System.out.println("  " + (i + 1) + " - "
+                    + participants.get(i).getPrénom() + " "
+                    + participants.get(i).getNom());
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= participants.size()) {
+            System.out.println("Choisir un numéro de participant à modifier :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= participants.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+                choix = -1;
+            }
+        }
+
+        Participants p = participants.get(choix);
+
+        // Réutiliser confirmerParticipant avec les valeurs actuelles
+        Participants modifié = confirmerParticipant(
+                p.getNom(), p.getPrénom(), p.getTéléphone(), p.getEmail(),
+                p.getClub(), p.getType(), p.getPlages(),
+                p.isAvecSouper(), p.isAvecLogement(), data);
+
+        participants.set(choix, modifié);
+        System.out.println("✅ Participant modifié. N'oubliez pas de sauvegarder (option 3).");
+    }
 }

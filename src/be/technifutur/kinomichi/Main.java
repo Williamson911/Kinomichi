@@ -36,6 +36,8 @@ public class Main {
             System.out.println("10. Afficher les plages");
             System.out.println("11. Voir les tarifs");
             System.out.println("12. Calculer le prix d'un participant");
+            System.out.println("13. Modifier un participant");
+            System.out.println("14. Supprimer un participant");
             System.out.println("========================================");
             System.out.println("Choix :");
 
@@ -81,6 +83,12 @@ public class Main {
                 }
                 case "12" -> {
                     if (verifierData(data)) affichage.calculerPrixParticipant(data, scanner);
+                }
+                case "13" -> {
+                    if (verifierData(data)) saisie.modifierParticipant(data);
+                }
+                case "14" -> {
+                    if (verifierData(data)) saisie.supprimerParticipant(data);
                 }
                 default -> System.out.println("⚠ Choix invalide.");
             }
