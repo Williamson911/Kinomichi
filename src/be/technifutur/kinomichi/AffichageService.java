@@ -116,7 +116,9 @@ public class AffichageService {
                             .count();
                     System.out.println("  Plage " + p.getNumero()
                             + " | " + p.getHeureDebut() + " → " + p.getHeureFin()
-                            + " | Animateur : " + p.getAnimateur()
+                            + " | Animateur : " + (p.getAnimateur() != null
+                            ? p.getAnimateur().getPrénom() + " " + p.getAnimateur().getNom()
+                            : "aucun")
                             + " | Inscrits : " + nbInscrits);
                 });
 
@@ -164,7 +166,6 @@ public class AffichageService {
             System.out.println("⚠ Aucun participant enregistré.");
             return;
         }
-
 
         System.out.println("Participants disponibles :");
         List<Participants> participants = data.getParticipants();

@@ -65,9 +65,8 @@ public class SaisieService {
 
         String continuer = "o";
         int numero = 1;
+
         while (continuer.equalsIgnoreCase("o")) {
-
-
             String jour = "";
             while (!jour.equalsIgnoreCase("Samedi") && !jour.equalsIgnoreCase("Dimanche")) {
                 System.out.println("Jour (Samedi/Dimanche) :");
@@ -78,18 +77,15 @@ public class SaisieService {
             }
             jour = Character.toUpperCase(jour.charAt(0)) + jour.substring(1).toLowerCase();
 
-
             String heureDebut = saisirHeure("Heure début");
             String heureFin   = saisirHeure("Heure fin");
 
-
-            String animateur = saisirAvecValidation("Animateur :");
-
-            plages.add(new PlageHoraire(numero++, jour, heureDebut, heureFin, animateur));
+            plages.add(new PlageHoraire(numero++, jour, heureDebut, heureFin, null));
 
             System.out.println("Ajouter une autre plage ? (o/n)");
             continuer = scanner.nextLine();
         }
+
         return plages;
     }
     private String saisirAvecValidation(String message) {
@@ -531,43 +527,70 @@ public class SaisieService {
                     + participant.getPrénom() + " " + participant.getNom() + ".");
         }
     }
-    public void affecterAnimateur(StageData data) {
+    public void affecterAnimateur(StageData data, Scanner scanner) {
+        // Vérifie qu'il y a des plages
         if (data.getPlages() == null || data.getPlages().isEmpty()) {
             System.out.println("⚠ Aucune plage définie.");
             return;
         }
 
-        // Afficher les plages
+        // Liste des animateurs
+        List<Participants> animateurs = data.getParticipants().stream()
+                .filter(p -> "Animateur".equals(p.getType()))
+                .toList();
+
+        if (animateurs.isEmpty()) {
+            System.out.println("⚠ Aucun animateur disponible.");
+            return;
+        }
+
+        // Affiche les plages
         System.out.println("Plages disponibles :");
         List<PlageHoraire> plages = data.getPlages();
         for (int i = 0; i < plages.size(); i++) {
-            System.out.println("  " + (i + 1) + " - Plage " + plages.get(i).getNumero()
-                    + " | " + plages.get(i).getJour()
-                    + " " + plages.get(i).getHeureDebut() + " → " + plages.get(i).getHeureFin()
-                    + " | Animateur actuel : " + plages.get(i).getAnimateur());
+            PlageHoraire p = plages.get(i);
+            String anim = p.getAnimateur() != null
+                    ? p.getAnimateur().getPrénom() + " " + p.getAnimateur().getNom()
+                    : "aucun";
+            System.out.println("  " + (i + 1) + " - Plage " + p.getNumero() + " | " + p.getJour() + " "
+                    + p.getHeureDebut() + " → " + p.getHeureFin() + " | Animateur actuel: " + anim);
         }
 
-        // Choisir la plage
+        // Choix de la plage
         int choixPlage = -1;
         while (choixPlage < 0 || choixPlage >= plages.size()) {
-            System.out.println("Choisir un numéro de plage :");
+            System.out.print("Choisir un numéro de plage : ");
             try {
                 choixPlage = Integer.parseInt(scanner.nextLine()) - 1;
-                if (choixPlage < 0 || choixPlage >= plages.size()) {
-                    System.out.println("⚠ Numéro invalide.");
-                }
             } catch (NumberFormatException e) {
-                System.out.println("⚠ Entrez un numéro valide.");
-                choixPlage = -1;
+                System.out.println("⚠ Numéro invalide.");
             }
         }
+        PlageHoraire plageChoisie = plages.get(choixPlage);
 
-        PlageHoraire plage = plages.get(choixPlage);
-        String nouvelAnimateur = saisirAvecValidation("Nouvel animateur", plage.getAnimateur());
-        plage.setAnimateur(nouvelAnimateur);
+        // Affiche animateurs disponibles
+        System.out.println("Animateurs disponibles :");
+        for (int i = 0; i < animateurs.size(); i++) {
+            Participants p = animateurs.get(i);
+            System.out.println("  " + (i + 1) + " - " + p.getPrénom() + " " + p.getNom());
+        }
 
-        System.out.println("✅ Animateur de la plage " + plage.getNumero()
-                + " mis à jour : " + nouvelAnimateur);
+        // Choix de l'animateur
+        int choixAnim = -1;
+        while (choixAnim < 0 || choixAnim >= animateurs.size()) {
+            System.out.print("Choisir un animateur : ");
+            try {
+                choixAnim = Integer.parseInt(scanner.nextLine()) - 1;
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Numéro invalide.");
+            }
+        }
+        Participants animateurChoisi = animateurs.get(choixAnim);
+
+        // Affectation
+        plageChoisie.setAnimateur(animateurChoisi);
+        System.out.println("✅ Animateur " + animateurChoisi.getPrénom() + " " + animateurChoisi.getNom()
+                + " assigné à la plage " + plageChoisie.getNumero() + ".");
     }
     public void supprimerParticipant(StageData data) {
         if (data.getParticipants() == null || data.getParticipants().isEmpty()) {
@@ -764,7 +787,28 @@ public class SaisieService {
                 }
                 case "2" -> plage.setHeureDebut(saisirHeure("Heure début", plage.getHeureDebut()));
                 case "3" -> plage.setHeureFin(saisirHeure("Heure fin", plage.getHeureFin()));
-                case "4" -> plage.setAnimateur(saisirAvecValidation("Animateur", plage.getAnimateur()));
+                case "4" -> {
+                    List<Participants> participants = data.getParticipants();
+                    List<Participants> animateurs = participants.stream()
+                            .filter(Participants::isAnimateur)
+                            .toList();
+
+
+                    for (int i = 0; i < animateurs.size(); i++) {
+                        Participants p = animateurs.get(i);
+                        System.out.println((i + 1) + " - " + p.getPrénom() + " " + p.getNom());
+                    }
+
+
+                    while (choix < 1 || choix > animateurs.size()) {
+                        System.out.print("Choisir un animateur par numéro : ");
+                        try { choix = Integer.parseInt(scanner.nextLine()); }
+                        catch (NumberFormatException e) { choix = -1; }
+                    }
+
+
+                    plage.setAnimateur(animateurs.get(choix - 1));
+                }
                 default  -> System.out.println("⚠ Choix invalide.");
             }
         }
@@ -897,4 +941,5 @@ public class SaisieService {
 
         System.out.println("✅ Type supprimé. N'oubliez pas de sauvegarder (option 3).");
     }
+
 }

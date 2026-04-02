@@ -5,14 +5,12 @@ public class PlageHoraire {
     private String jour;
     private String heureDebut;
     private String heureFin;
-    private String animateur;
-
+    private Participants animateur;
 
     public PlageHoraire() {}
 
-
     public PlageHoraire(int numero, String jour, String heureDebut,
-                        String heureFin, String animateur) {
+                        String heureFin, Participants animateur) {
         this.numero = numero;
         this.jour = jour;
         this.heureDebut = heureDebut;
@@ -20,15 +18,14 @@ public class PlageHoraire {
         this.animateur = animateur;
     }
 
+    public int getNumero()               { return numero; }
+    public String getJour()              { return jour; }
+    public String getHeureDebut()        { return heureDebut; }
+    public String getHeureFin()          { return heureFin; }
+    public Participants getAnimateur()   { return animateur; }
 
-    public int getNumero()        { return numero; }
-    public String getJour()       { return jour; }
-    public String getHeureDebut() { return heureDebut; }
-    public String getHeureFin()   { return heureFin; }
-    public String getAnimateur()  { return animateur; }
-
-    public void setAnimateur(String animateur) { this.animateur = animateur; }
-    public void setJour(String jour)            { this.jour = jour; }
-    public void setHeureDebut(String heureDebut){ this.heureDebut = heureDebut; }
-    public void setHeureFin(String heureFin)    { this.heureFin = heureFin; }
+    public void setAnimateur(Participants animateur) { this.animateur = animateur; }
+    public void setJour(String jour)                  { this.jour = jour; }
+    public void setHeureDebut(String heureDebut)     { this.heureDebut = heureDebut; }
+    public void setHeureFin(String heureFin)         { this.heureFin = heureFin; }
 }

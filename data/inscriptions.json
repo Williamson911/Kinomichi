@@ -26,17 +26,21 @@
   "plages": [
     {
       "numero": 1,
-      "jour": "Samedi",
-      "heureDebut": "09:00",
-      "heureFin": "10:00",
-      "animateur": "Ramzan"
-    },
-    {
-      "numero": 2,
-      "jour": "Samedi",
-      "heureDebut": "10:30",
-      "heureFin": "11:30",
-      "animateur": "Ramzan"
+      "jour": "Dimanche",
+      "heureDebut": "13:00",
+      "heureFin": "14:00",
+      "animateur": {
+        "nom": "Master",
+        "prénom": "Xehanort",
+        "téléphone": "1313131313",
+        "email": "darkness.13@kingdomhearts.com",
+        "club": "Scala Ad Caelum",
+        "type": "Animateur",
+        "plages": [],
+        "avecSouper": true,
+        "avecLogement": true,
+        "animateur": false
+      }
     }
   ],
   "participants": [
@@ -51,7 +55,8 @@
         1
       ],
       "avecSouper": true,
-      "avecLogement": true
+      "avecLogement": true,
+      "animateur": false
     },
     {
       "nom": "Potter",
@@ -61,10 +66,11 @@
       "club": "Poudlard",
       "type": "réduit",
       "plages": [
-        2
+        1
       ],
       "avecSouper": true,
-      "avecLogement": false
+      "avecLogement": false,
+      "animateur": false
     },
     {
       "nom": "Bond",
@@ -77,7 +83,8 @@
         1
       ],
       "avecSouper": true,
-      "avecLogement": false
+      "avecLogement": false,
+      "animateur": false
     },
     {
       "nom": "Granger",
@@ -88,7 +95,20 @@
       "type": "réduit",
       "plages": [],
       "avecSouper": true,
-      "avecLogement": false
+      "avecLogement": false,
+      "animateur": false
+    },
+    {
+      "nom": "Master",
+      "prénom": "Xehanort",
+      "téléphone": "1313131313",
+      "email": "darkness.13@kingdomhearts.com",
+      "club": "Scala Ad Caelum",
+      "type": "Animateur",
+      "plages": [],
+      "avecSouper": true,
+      "avecLogement": true,
+      "animateur": false
     }
   ]
 }

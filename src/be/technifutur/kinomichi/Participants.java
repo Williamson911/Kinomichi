@@ -12,9 +12,11 @@ public class Participants {
     private List<Integer> plages;
     private boolean avecSouper;
     private boolean avecLogement;
+    private boolean animateur;
 
 
-    public Participants() {}
+    public Participants() {
+    }
 
 
     public Participants(String nom, String prénom, String téléphone, String email,
@@ -31,22 +33,86 @@ public class Participants {
         this.avecLogement = avecLogement;
     }
 
-    public String getNom()             { return nom; }
-    public String getPrénom()          { return prénom; }
-    public String getTéléphone()       { return téléphone; }
-    public String getEmail()           { return email; }
-    public String getClub()            { return club; }
-    public String getType()            { return type; }
-    public List<Integer> getPlages()   { return plages; }
-    public boolean isAvecSouper()      { return avecSouper; }
-    public boolean isAvecLogement()    { return avecLogement; }
-    public void setNom(String nom)                  { this.nom = nom; }
-    public void setPrénom(String prénom)            { this.prénom = prénom; }
-    public void setTéléphone(String téléphone)      { this.téléphone = téléphone; }
-    public void setEmail(String email)              { this.email = email; }
-    public void setClub(String club)               { this.club = club; }
-    public void setType(String type)               { this.type = type; }
-    public void setPlages(List<Integer> plages)    { this.plages = plages; }
-    public void setAvecSouper(boolean avecSouper)  { this.avecSouper = avecSouper; }
-    public void setAvecLogement(boolean avecLogement) { this.avecLogement = avecLogement; }
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrénom() {
+        return prénom;
+    }
+
+    public String getTéléphone() {
+        return téléphone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getClub() {
+        return club;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public List<Integer> getPlages() {
+        return plages;
+    }
+
+    public boolean isAvecSouper() {
+        return avecSouper;
+    }
+
+    public boolean isAvecLogement() {
+        return avecLogement;
+    }
+    public boolean isAnimateur() {
+        return animateur;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrénom(String prénom) {
+        this.prénom = prénom;
+    }
+
+    public void setTéléphone(String téléphone) {
+        this.téléphone = téléphone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setClub(String club) {
+        this.club = club;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setPlages(List<Integer> plages) {
+        this.plages = plages;
+    }
+
+    public void setAvecSouper(boolean avecSouper) {
+        this.avecSouper = avecSouper;
+    }
+
+    public void setAvecLogement(boolean avecLogement) {
+        this.avecLogement = avecLogement;
+    }
+
+    public void setAnimateur(boolean animateur) {
+        this.animateur = animateur;
+    }
+    @Override
+    public String toString() {
+        return prénom + " " + nom;
+    }
 }

@@ -105,8 +105,10 @@ public class StageLoader {
                     System.out.println("⚠ Plage " + plage.getNumero() + " : heure de fin invalide.");
                     valide = false;
                 }
-                if (plage.getAnimateur() == null || plage.getAnimateur().isBlank()) {
-                    System.out.println("⚠ Plage " + plage.getNumero() + " : animateur manquant.");
+                if (plage.getAnimateur() == null
+                        || plage.getAnimateur().getPrénom().isBlank()
+                        || plage.getAnimateur().getNom().isBlank()) {
+                    System.out.println("⚠ Plage " + plage.getNumero() + " : animateur manquant ou incomplet.");
                     valide = false;
                 }
             }

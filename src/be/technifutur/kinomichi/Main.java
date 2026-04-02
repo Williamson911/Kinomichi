@@ -99,7 +99,7 @@ public class Main {
                     if (verifierData(data)) saisie.inscrireParticipantPlage(data);
                 }
                 case "11" -> {
-                    if (verifierData(data)) saisie.affecterAnimateur(data);
+                    if (verifierData(data)) saisie.affecterAnimateur(data, scanner);
                 }
 
                 // [Participants]
@@ -119,7 +119,7 @@ public class Main {
                     if (verifierData(data)) affichage.calculerPrixParticipant(data, scanner);
                 }
 
-                // [Export]
+
                 case "17" -> {
                     if (verifierData(data)) {
                         System.out.println("Nom du fichier (ex: rapport.txt ou rapport.csv) :");
