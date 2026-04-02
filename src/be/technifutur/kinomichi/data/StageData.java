@@ -11,7 +11,7 @@ public class StageData {
     private List<TypeParticipant> types;
     private List<PlageHoraire> plages;
     private List<Participants> participants;
-    
+
     public StageData() {}
 
     public String getNom()                       { return nom; }
