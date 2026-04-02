@@ -1,19 +1,26 @@
 {
-  "nom": "Kino",
+  "nom": "Konimichi",
   "types": [
     {
-      "libellé": "Plien",
+      "libellé": "Plein",
       "prixParPlage": 20.0,
-      "prixSouper": 20.0,
-      "prixLogement": 20.0,
-      "forfaitTout": 50.0
+      "prixSouper": 25.0,
+      "prixLogement": 50.0,
+      "forfaitTout": 85.0
     },
     {
-      "libellé": "Reduit",
-      "prixParPlage": 10.0,
-      "prixSouper": 10.0,
-      "prixLogement": 10.0,
-      "forfaitTout": 20.0
+      "libellé": "réduit",
+      "prixParPlage": 15.0,
+      "prixSouper": 20.0,
+      "prixLogement": 45.0,
+      "forfaitTout": 70.0
+    },
+    {
+      "libellé": "Animateur",
+      "prixParPlage": 0.0,
+      "prixSouper": 0.0,
+      "prixLogement": 0.0,
+      "forfaitTout": 0.0
     }
   ],
   "plages": [
@@ -23,21 +30,54 @@
       "heureDebut": "09:00",
       "heureFin": "10:00",
       "animateur": "Ramzan"
+    },
+    {
+      "numero": 2,
+      "jour": "Samedi",
+      "heureDebut": "10:30",
+      "heureFin": "11:30",
+      "animateur": "Ramzan"
     }
   ],
   "participants": [
     {
-      "nom": "Jajzja",
-      "prénom": "ikzeajez",
-      "téléphone": "0225555555",
-      "email": "aiziai@kkez.com",
-      "club": "Liège",
-      "type": "Plien",
+      "nom": "AJaja",
+      "prénom": "Kker",
+      "téléphone": "022455554",
+      "email": "akzka@gmze.com",
+      "club": "Java",
+      "type": "Plein",
       "plages": [
         1
       ],
       "avecSouper": true,
       "avecLogement": true
+    },
+    {
+      "nom": "JAjepa",
+      "prénom": "pzke",
+      "téléphone": "4458767",
+      "email": "lzlel@lelme.com",
+      "club": "Java",
+      "type": "réduit",
+      "plages": [
+        2
+      ],
+      "avecSouper": true,
+      "avecLogement": false
+    },
+    {
+      "nom": "Kjaozjao",
+      "prénom": "ppllz",
+      "téléphone": "454558555",
+      "email": "Laloza@lzle.com",
+      "club": "Java",
+      "type": "réduit",
+      "plages": [
+        1
+      ],
+      "avecSouper": true,
+      "avecLogement": false
     }
   ]
 }
