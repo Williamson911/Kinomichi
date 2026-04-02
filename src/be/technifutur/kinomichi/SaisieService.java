@@ -288,26 +288,34 @@ public class SaisieService {
                 case "5" -> club      = saisirAvecValidation("Nouveau club", club);
                 case "6" -> {
                     List<TypeParticipant> types = data.getTypes();
+
                     for (int i = 0; i < types.size(); i++) {
                         System.out.println("  " + (i + 1) + " - " + types.get(i).getLibellé());
                     }
                     System.out.println("  0 - Aucun type");
-                    int choixType = -1;
-                    while (choixType < -1 || choixType >= types.size()) {
+
+                    while (true) {
                         System.out.println("Choisir un numéro :");
+
                         try {
-                            choixType = Integer.parseInt(scanner.nextLine()) - 1;
-                            if (choixType == -1) {
+                            int saisie = Integer.parseInt(scanner.nextLine());
+
+                            if (saisie == 0) {
                                 type = null;
-                            } else if (choixType >= 0 && choixType < types.size()) {
-                                type = types.get(choixType).getLibellé();
+                                break;
+                            }
+
+                            int index = saisie - 1;
+
+                            if (index >= 0 && index < types.size()) {
+                                type = types.get(index).getLibellé();
+                                break;
                             } else {
                                 System.out.println("⚠ Numéro invalide.");
-                                choixType = -2;
                             }
+
                         } catch (NumberFormatException e) {
                             System.out.println("⚠ Entrez un numéro valide.");
-                            choixType = -2;
                         }
                     }
                 }
@@ -638,5 +646,255 @@ public class SaisieService {
 
         participants.set(choix, modifié);
         System.out.println("✅ Participant modifié. N'oubliez pas de sauvegarder (option 3).");
+    }
+    public void supprimerPlage(StageData data) {
+        if (data.getPlages() == null || data.getPlages().isEmpty()) {
+            System.out.println("⚠ Aucune plage définie.");
+            return;
+        }
+
+        System.out.println("Plages :");
+        List<PlageHoraire> plages = data.getPlages();
+        for (int i = 0; i < plages.size(); i++) {
+            System.out.println("  " + (i + 1) + " - Plage " + plages.get(i).getNumero()
+                    + " | " + plages.get(i).getJour()
+                    + " " + plages.get(i).getHeureDebut() + " → " + plages.get(i).getHeureFin()
+                    + " (" + plages.get(i).getAnimateur() + ")");
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= plages.size()) {
+            System.out.println("Choisir un numéro de plage à supprimer :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= plages.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+                choix = -1;
+            }
+        }
+
+        PlageHoraire plage = plages.get(choix);
+
+        // Vérifier si des participants sont inscrits à cette plage
+        long nbInscrits = data.getParticipants() == null ? 0 :
+                data.getParticipants().stream()
+                .filter(p -> p.getPlages().contains(plage.getNumero()))
+                .count();
+
+        if (nbInscrits > 0) {
+            System.out.println("⚠ " + nbInscrits + " participant(s) inscrit(s) à cette plage.");
+            System.out.println("Supprimer quand même ? (o/n)");
+            if (!scanner.nextLine().equalsIgnoreCase("o")) {
+                System.out.println("Suppression annulée.");
+                return;
+            }
+            // Retirer la plage des inscriptions des participants
+            data.getParticipants().forEach(p -> p.getPlages().remove(Integer.valueOf(plage.getNumero())));
+            System.out.println("✅ Plage retirée des inscriptions des participants.");
+        } else {
+            System.out.println("Confirmer la suppression de la plage "
+                    + plage.getNumero() + " ? (o/n)");
+            if (!scanner.nextLine().equalsIgnoreCase("o")) {
+                System.out.println("Suppression annulée.");
+                return;
+            }
+        }
+
+        plages.remove(choix);
+        System.out.println("✅ Plage supprimée. N'oubliez pas de sauvegarder (option 3).");
+    }
+    public void modifierPlage(StageData data) {
+        if (data.getPlages() == null || data.getPlages().isEmpty()) {
+            System.out.println("⚠ Aucune plage définie.");
+            return;
+        }
+
+        System.out.println("Plages :");
+        List<PlageHoraire> plages = data.getPlages();
+        for (int i = 0; i < plages.size(); i++) {
+            System.out.println("  " + (i + 1) + " - Plage " + plages.get(i).getNumero()
+                    + " | " + plages.get(i).getJour()
+                    + " " + plages.get(i).getHeureDebut() + " → " + plages.get(i).getHeureFin()
+                    + " (" + plages.get(i).getAnimateur() + ")");
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= plages.size()) {
+            System.out.println("Choisir un numéro de plage à modifier :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= plages.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+                choix = -1;
+            }
+        }
+
+        PlageHoraire plage = plages.get(choix);
+
+        while (true) {
+            System.out.println("\n-- Récapitulatif plage --");
+            System.out.println("  1 - Jour       : " + plage.getJour());
+            System.out.println("  2 - Heure début: " + plage.getHeureDebut());
+            System.out.println("  3 - Heure fin  : " + plage.getHeureFin());
+            System.out.println("  4 - Animateur  : " + plage.getAnimateur());
+            System.out.println("  0 - Valider");
+            System.out.println("Numéro du champ à corriger (ou 0 pour valider) :");
+
+            switch (scanner.nextLine().trim()) {
+                case "0" -> {
+                    System.out.println("✅ Plage modifiée. N'oubliez pas de sauvegarder (option 3).");
+                    return;
+                }
+                case "1" -> {
+                    String jour = "";
+                    while (!jour.equalsIgnoreCase("Samedi") && !jour.equalsIgnoreCase("Dimanche")) {
+                        System.out.println("Jour (Samedi/Dimanche) [actuel : " + plage.getJour() + "] :");
+                        jour = scanner.nextLine().trim();
+                        if (!jour.equalsIgnoreCase("Samedi") && !jour.equalsIgnoreCase("Dimanche")) {
+                            System.out.println("⚠ Jour invalide.");
+                        }
+                    }
+                    plage.setJour(Character.toUpperCase(jour.charAt(0)) + jour.substring(1).toLowerCase());
+                }
+                case "2" -> plage.setHeureDebut(saisirHeure("Heure début", plage.getHeureDebut()));
+                case "3" -> plage.setHeureFin(saisirHeure("Heure fin", plage.getHeureFin()));
+                case "4" -> plage.setAnimateur(saisirAvecValidation("Animateur", plage.getAnimateur()));
+                default  -> System.out.println("⚠ Choix invalide.");
+            }
+        }
+    }
+    public void modifierType(StageData data) {
+        if (data.getTypes() == null || data.getTypes().isEmpty()) {
+            System.out.println("⚠ Aucun type défini.");
+            return;
+        }
+
+        List<TypeParticipant> types = data.getTypes();
+
+        System.out.println("Types existants :");
+        for (int i = 0; i < types.size(); i++) {
+            TypeParticipant t = types.get(i);
+            System.out.println("  " + (i + 1) + " - " + t.getLibellé()
+                    + " | Plage: " + t.getPrixParPlage()
+                    + " | Souper: " + t.getPrixSouper()
+                    + " | Logement: " + t.getPrixLogement()
+                    + " | Forfait: " + t.getForfaitTout());
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= types.size()) {
+            System.out.println("Choisir un type à modifier :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= types.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+            }
+        }
+
+        TypeParticipant type = types.get(choix);
+
+        // Modification champ par champ
+        while (true) {
+            System.out.println("\n-- Modification du type --");
+            System.out.println("  1 - Libellé      : " + type.getLibellé());
+            System.out.println("  2 - Prix plage   : " + type.getPrixParPlage());
+            System.out.println("  3 - Prix souper  : " + type.getPrixSouper());
+            System.out.println("  4 - Prix logement: " + type.getPrixLogement());
+            System.out.println("  5 - Forfait      : " + type.getForfaitTout());
+            System.out.println("  0 - Valider");
+
+            String input = scanner.nextLine().trim();
+
+            switch (input) {
+                case "0" -> {
+                    System.out.println("✅ Type modifié.");
+                    return;
+                }
+                case "1" -> {
+                    System.out.println("Nouveau libellé :");
+                    String nouveau = scanner.nextLine().trim();
+
+                    boolean existe = types.stream()
+                            .anyMatch(t -> t != type && t.getLibellé().equalsIgnoreCase(nouveau));
+
+                    if (existe) {
+                        System.out.println("⚠ Ce libellé existe déjà.");
+                    } else {
+                        type.setLibellé(nouveau);
+                    }
+                }
+                case "2" -> type.setPrixParPlage(parseDouble(scanner.nextLine()));
+                case "3" -> type.setPrixSouper(parseDouble(scanner.nextLine()));
+                case "4" -> type.setPrixLogement(parseDouble(scanner.nextLine()));
+                case "5" -> type.setForfaitTout(parseDouble(scanner.nextLine()));
+                default -> System.out.println("⚠ Choix invalide.");
+            }
+        }
+    }
+    public void supprimerType(StageData data) {
+        if (data.getTypes() == null || data.getTypes().isEmpty()) {
+            System.out.println("⚠ Aucun type défini.");
+            return;
+        }
+
+        List<TypeParticipant> types = data.getTypes();
+
+        System.out.println("Types existants :");
+        for (int i = 0; i < types.size(); i++) {
+            System.out.println("  " + (i + 1) + " - " + types.get(i).getLibellé());
+        }
+
+        int choix = -1;
+        while (choix < 0 || choix >= types.size()) {
+            System.out.println("Choisir un type à supprimer :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= types.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+            }
+        }
+
+        TypeParticipant type = types.get(choix);
+
+        // 🔥 Vérifier si utilisé par des participants
+        long nbUtilisations = data.getParticipants() == null ? 0 :
+                data.getParticipants().stream()
+                .filter(p -> type.getLibellé().equalsIgnoreCase(p.getType()))
+                .count();
+
+        if (nbUtilisations > 0) {
+            System.out.println("⚠ Ce type est utilisé par " + nbUtilisations + " participant(s).");
+            System.out.println("Supprimer quand même ? (o/n)");
+
+            if (!scanner.nextLine().equalsIgnoreCase("o")) {
+                System.out.println("Suppression annulée.");
+                return;
+            }
+
+            // 🔥 Nettoyage des participants
+            data.getParticipants().forEach(p -> {
+                if (type.getLibellé().equalsIgnoreCase(p.getType())) {
+                    p.setType(null);
+                }
+            });
+
+            System.out.println("✅ Type retiré des participants concernés.");
+        }
+
+        types.remove(choix);
+
+        System.out.println("✅ Type supprimé. N'oubliez pas de sauvegarder (option 3).");
     }
 }

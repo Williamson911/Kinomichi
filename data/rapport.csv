@@ -1,0 +1,5 @@
+Nom;Prénom;Club;Téléphone;Email;Type;Plages;Souper;Logement;Total
+Bond;James;MI6;454558555;bond@mi6.uk;réduit;[1];oui;non;70,00
+Granger;Hermione;Poudlard;012345678;granger@poudlard.uk;réduit;Souper uniquement;oui;non;70,00
+Mouse;Mickey;Disney;022455554;mickey.mouse@disney.com;Plein;[1];oui;oui;85,00
+Potter;Harry;Poudlard;4458767;potter@poudlard.uk;réduit;[2];oui;non;70,00

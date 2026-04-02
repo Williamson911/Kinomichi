@@ -41,11 +41,11 @@
   ],
   "participants": [
     {
-      "nom": "AJaja",
-      "prénom": "Kker",
+      "nom": "Mouse",
+      "prénom": "Mickey",
       "téléphone": "022455554",
-      "email": "akzka@gmze.com",
-      "club": "Java",
+      "email": "mickey.mouse@disney.com",
+      "club": "Disney",
       "type": "Plein",
       "plages": [
         1
@@ -54,11 +54,11 @@
       "avecLogement": true
     },
     {
-      "nom": "JAjepa",
-      "prénom": "pzke",
+      "nom": "Potter",
+      "prénom": "Harry",
       "téléphone": "4458767",
-      "email": "lzlel@lelme.com",
-      "club": "Java",
+      "email": "potter@poudlard.uk",
+      "club": "Poudlard",
       "type": "réduit",
       "plages": [
         2
@@ -67,15 +67,26 @@
       "avecLogement": false
     },
     {
-      "nom": "Kjaozjao",
-      "prénom": "ppllz",
+      "nom": "Bond",
+      "prénom": "James",
       "téléphone": "454558555",
-      "email": "Laloza@lzle.com",
-      "club": "Java",
+      "email": "bond@mi6.uk",
+      "club": "MI6",
       "type": "réduit",
       "plages": [
         1
       ],
+      "avecSouper": true,
+      "avecLogement": false
+    },
+    {
+      "nom": "Granger",
+      "prénom": "Hermione",
+      "téléphone": "012345678",
+      "email": "granger@poudlard.uk",
+      "club": "Poudlard",
+      "type": "réduit",
+      "plages": [],
       "avecSouper": true,
       "avecLogement": false
     }

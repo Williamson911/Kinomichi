@@ -165,7 +165,7 @@ public class AffichageService {
             return;
         }
 
-        // Choisir le participant
+
         System.out.println("Participants disponibles :");
         List<Participants> participants = data.getParticipants();
         for (int i = 0; i < participants.size(); i++) {
@@ -190,7 +190,7 @@ public class AffichageService {
 
         Participants p = participants.get(choix);
 
-        // Retrouver le type
+
         TypeParticipant typeP = data.getTypes() == null ? null :
                 data.getTypes().stream()
                 .filter(t -> t.getLibellé().equals(p.getType()))

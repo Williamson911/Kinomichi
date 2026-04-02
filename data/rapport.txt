@@ -1,0 +1,60 @@
+=======================================
+        RAPPORT STAGE KINOMICHI
+=======================================
+
+Nom du stage : Konimichi
+
+----- TARIFS -----
+- Plein | Plage: 20.0 | Souper: 25.0 | Logement: 50.0 | Forfait: 85.0
+- réduit | Plage: 15.0 | Souper: 20.0 | Logement: 45.0 | Forfait: 70.0
+- Animateur | Plage: 0.0 | Souper: 0.0 | Logement: 0.0 | Forfait: 0.0
+
+----- PLAGES HORAIRES -----
+Plage 1 | Samedi 09:00 - 10:00 | Animateur: Ramzan
+Plage 2 | Samedi 10:30 - 11:30 | Animateur: Ramzan
+
+----- PARTICIPANTS -----
+---------------------------------------
+James Bond
+Club      : MI6
+Téléphone : 454558555
+Email     : bond@mi6.uk
+Type      : réduit
+Plages    : [1]
+Souper    : oui
+Logement  : non
+TOTAL (€) : 70,00
+---------------------------------------
+Hermione Granger
+Club      : Poudlard
+Téléphone : 012345678
+Email     : granger@poudlard.uk
+Type      : réduit
+Plages    : Souper uniquement
+Souper    : oui
+Logement  : non
+TOTAL (€) : 70,00
+---------------------------------------
+Mickey Mouse
+Club      : Disney
+Téléphone : 022455554
+Email     : mickey.mouse@disney.com
+Type      : Plein
+Plages    : [1]
+Souper    : oui
+Logement  : oui
+TOTAL (€) : 85,00
+---------------------------------------
+Harry Potter
+Club      : Poudlard
+Téléphone : 4458767
+Email     : potter@poudlard.uk
+Type      : réduit
+Plages    : [2]
+Souper    : oui
+Logement  : non
+TOTAL (€) : 70,00
+
+=======================================
+          FIN DU RAPPORT
+=======================================

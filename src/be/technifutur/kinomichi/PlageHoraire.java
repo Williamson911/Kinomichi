@@ -26,5 +26,9 @@ public class PlageHoraire {
     public String getHeureDebut() { return heureDebut; }
     public String getHeureFin()   { return heureFin; }
     public String getAnimateur()  { return animateur; }
+
     public void setAnimateur(String animateur) { this.animateur = animateur; }
+    public void setJour(String jour)            { this.jour = jour; }
+    public void setHeureDebut(String heureDebut){ this.heureDebut = heureDebut; }
+    public void setHeureFin(String heureFin)    { this.heureFin = heureFin; }
 }
