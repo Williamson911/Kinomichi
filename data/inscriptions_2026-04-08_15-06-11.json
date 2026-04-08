@@ -54,7 +54,7 @@
       "plages": [
         1
       ],
-      "avecSouper": false,
+      "avecSouper": true,
       "avecLogement": true,
       "animateur": false
     },

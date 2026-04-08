@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class StageLoader {
@@ -16,21 +17,51 @@ public class StageLoader {
     private static final String DATA_DIR = "data";
 
     public StageData charger(Scanner scanner) {
+        Path dossier = Paths.get(DATA_DIR);
 
-        System.out.println("Nom du fichier JSON (dans le dossier data/) :");
-        String nomFichier = scanner.nextLine();
-        Path chemin = Paths.get(DATA_DIR, nomFichier);
-
-
-        if (!Files.exists(chemin)) {
-            System.out.println("⚠ Fichier introuvable : " + chemin.toAbsolutePath());
+        // Lister les fichiers JSON disponibles
+        List<Path> fichiers;
+        try {
+            fichiers = Files.list(dossier)
+                    .filter(f -> f.toString().endsWith(".json"))
+                    .sorted()
+                    .collect(java.util.stream.Collectors.toList());
+        } catch (IOException e) {
+            System.out.println("⚠ Impossible de lire le dossier data/ : " + e.getMessage());
             return null;
         }
 
-        try (java.io.FileReader reader = new java.io.FileReader(chemin.toFile())) {
-            StageData data = new Gson().fromJson(reader, StageData.class);
-            System.out.println("✅ Fichier chargé : " + chemin.toAbsolutePath());
+        if (fichiers.isEmpty()) {
+            System.out.println("⚠ Aucun fichier JSON trouvé dans data/");
+            return null;
+        }
 
+        // Afficher la liste
+        System.out.println("Fichiers disponibles :");
+        for (int i = 0; i < fichiers.size(); i++) {
+            System.out.println("  " + (i + 1) + " - " + fichiers.get(i).getFileName());
+        }
+
+        // Choisir
+        int choix = -1;
+        while (choix < 0 || choix >= fichiers.size()) {
+            System.out.println("Choisir un numéro :");
+            try {
+                choix = Integer.parseInt(scanner.nextLine()) - 1;
+                if (choix < 0 || choix >= fichiers.size()) {
+                    System.out.println("⚠ Numéro invalide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrez un numéro valide.");
+                choix = -1;
+            }
+        }
+
+        Path chemin = fichiers.get(choix);
+
+        try (java.io.FileReader reader = new java.io.FileReader(chemin.toFile(), java.nio.charset.StandardCharsets.UTF_8)) {
+            StageData data = new Gson().fromJson(reader, StageData.class);
+            System.out.println("✅ Fichier chargé : " + chemin.getFileName());
 
             if (!valider(data)) {
                 System.out.println("\n⚠ Le fichier contient des erreurs, vérifiez les données.");
@@ -46,15 +77,31 @@ public class StageLoader {
     }
 
     public void sauvegarder(StageData data) {
-        Path chemin = Paths.get(DATA_DIR, "inscriptions.json");
-
         try {
-            Files.createDirectories(chemin.getParent());
+            Files.createDirectories(Paths.get(DATA_DIR));
+
+            // Nom horodaté pour le versioning
+            String horodatage = java.time.LocalDateTime.now()
+                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+            String nomVersionné = "inscriptions_" + horodatage + ".json";
+
+            Path cheminVersionné = Paths.get(DATA_DIR, nomVersionné);
+            Path cheminPrincipal = Paths.get(DATA_DIR, "inscriptions.json");
+
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            FileWriter writer = new FileWriter(chemin.toFile());
-            gson.toJson(data, writer);
-            writer.close();
-            System.out.println("✅ Données sauvegardées dans : " + chemin.toAbsolutePath());
+
+            // Sauvegarde versionnée
+            try (FileWriter writer = new FileWriter(cheminVersionné.toFile(), java.nio.charset.StandardCharsets.UTF_8)) {
+                gson.toJson(data, writer);
+            }
+            System.out.println("✅ Version sauvegardée : " + nomVersionné);
+
+            // Mise à jour du fichier principal
+            try (FileWriter writer = new FileWriter(cheminPrincipal.toFile(), java.nio.charset.StandardCharsets.UTF_8)) {
+                gson.toJson(data, writer);
+            }
+            System.out.println("✅ Fichier principal mis à jour : inscriptions.json");
+
         } catch (IOException e) {
             System.out.println("⚠ Erreur de sauvegarde : " + e.getMessage());
         }

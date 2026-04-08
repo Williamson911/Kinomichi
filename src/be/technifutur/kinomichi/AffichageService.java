@@ -5,6 +5,7 @@ import be.technifutur.kinomichi.data.StageData;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class AffichageService {
 
     private final Scanner scanner;
@@ -13,14 +14,16 @@ public class AffichageService {
         this.scanner = scanner;
     }
 
-    public void afficherBanner() {
+    public void afficherBanner(String version) {
+        System.out.println(ConsoleColors.PURPLE);
+        System.out.println("                 " + version);
         System.out.println("***********************************************");
         System.out.println("* _  ___                       _      _     _ *");
         System.out.println("*| |/ (_)_ __   ___  _ __ ___ (_) ___| |__ (_)*");
         System.out.println("*| ' /| | '_ \\ / _ \\| '_ ` _ \\| |/ __| '_ \\| |*");
         System.out.println("*| . \\| | | | | (_) | | | | | | | (__| | | | |*");
         System.out.println("*|_|\\_\\_|_| |_|\\___/|_| |_| |_|_|\\___|_| |_|_|*");
-        System.out.println("***********************************************");
+        System.out.println("***********************************************" + ConsoleColors.RESET);
     }
 
     public void afficherRecapitulatif(StageData data) {

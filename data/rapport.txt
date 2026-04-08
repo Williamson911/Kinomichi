@@ -50,7 +50,7 @@ Téléphone : 022455554
 Email     : mickey.mouse@disney.com
 Type      : Plein
 Plages    : 1
-Souper    : oui
+Souper    : non
 Logement  : oui
 TOTAL (€) : 85.00
 ---------------------------------------
@@ -63,6 +63,16 @@ Plages    : 1
 Souper    : oui
 Logement  : non
 TOTAL (€) : 70.00
+---------------------------------------
+Dark Vador
+Club      : Sith
+Téléphone : 0000000000
+Email     : darthvader@galacticempire.uni
+Type      : Plein
+Plages    : 1
+Souper    : oui
+Logement  : oui
+TOTAL (€) : 85.00
 
 =======================================
           FIN DU RAPPORT

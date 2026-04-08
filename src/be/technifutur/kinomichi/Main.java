@@ -8,11 +8,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        VersionManager versionManager = new VersionManager();
         AffichageService affichage = new AffichageService(scanner);
         SaisieService saisie = new SaisieService(scanner);
         StageLoader loader = new StageLoader();
 
-        affichage.afficherBanner();
+        affichage.afficherBanner(versionManager.getVersion());
 
         StageData data = null;
         boolean quitter = false;
